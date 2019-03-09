@@ -16,9 +16,10 @@ class SourceRepositoryFactory
 
     public static function buildRepository($repositoryName){
 
-        $className = $repositoryName.'Account()';
+        $className = 'AppBundle\Service\\'.$repositoryName.'Account';
+
         if(class_exists($className)){
-            return new $repositoryName.'Account()';
+            return new $className;
         }
 
     }

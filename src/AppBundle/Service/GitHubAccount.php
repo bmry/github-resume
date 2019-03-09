@@ -51,26 +51,26 @@ class GitHubAccount implements SourceRepoAccountInterface
     private function createRepositoryList($accountUserName)
     {
         $content  = $this->getRepositoryFromGitHubByUserName($accountUserName);
-        $repos = json_decode($content);
+        $repos = json_decode($content->getBody()->getContents());
 
         foreach ($repos as $repo){
             $repoObject = new \stdClass();
-            $repoObject->repoLink = $repo['html_url'];
-            $repoObject->repoName = $repo['name'];
-            $repoObject->repoDescription = $repo['description'];
+            $repoObject->repoLink = $repo->html_url;
+            $repoObject->repoName = $repo->name;
+            $repoObject->repoDescription = $repo->description;
             $this->repositories->add($repoObject);
         }
     }
 
     public function createUserRepoAccountObject($accountUserName)
     {
-        $accountOwnerDetails =  $this->getOwnerFromGitHubByUserName($this->owner);
-        $accountOwnerDetails = json_decode($accountOwnerDetails);
-        $this->repositoryLink = $accountOwnerDetails['repos_url'];
-        $this->numberOfPublicRepository = $accountOwnerDetails['repos_url'];
-        $this->avatarUrl = $accountOwnerDetails['avatar_url'];
+        $accountOwnerDetails =  $this->getOwnerFromGitHubByUserName($accountUserName);
+        $accountOwnerDetails = json_decode($accountOwnerDetails->getBody()->getContents());
+        $this->repositoryLink = $accountOwnerDetails->repos_url;
+        $this->numberOfPublicRepository = $accountOwnerDetails->public_repos;
+        $this->avatarUrl = $accountOwnerDetails->avatar_url;
+        $this->owner = $accountOwnerDetails->login;
         $this->createRepositoryList($accountUserName);
-
         return $this;
     }
 }

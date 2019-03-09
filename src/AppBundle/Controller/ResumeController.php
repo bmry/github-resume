@@ -22,20 +22,21 @@ class ResumeController extends Controller
     public function generateResumeAction(Request $request)
     {
         $requestData = new RequestData();
-        $accountUserName = $requestData->getUserName();
-        $repositoryType = $requestData->getRepoType();
 
         $form = $this->createForm(new RequestFormType(), $requestData);
         $form->handleRequest($request);
         $resumeData = array();
+        $accountUserName = $requestData->getUserName();
+        $repositoryType = $requestData->getRepoType();
+
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($requestData);
-            exit;
+
             $repositoryAccount = SourceRepositoryFactory::buildRepository($repositoryType);
+
             $repositoryAccount = $repositoryAccount->createUserRepoAccountObject($accountUserName);
 
             $resumeData = [
-                'owner' => $repositoryAccount->getOwner,
+                'owner' => $repositoryAccount->getOwner(),
                 'repositories' => $repositoryAccount->getRepositoryList(),
                 'avatarUrl' => $repositoryAccount->getAvatarUrl(),
                 //'languagesAndPercentage' => $repositoryAccount->getUsedLanguagePercentage()
