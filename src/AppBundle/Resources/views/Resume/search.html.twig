@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <!-- Page Heading -->
+        <div class="card o-hidden" style="margin-top: 100px">
+            <div class="card-body">
+                <!-- Nested Row within Card Body -->
+                <div class="row">
+                    <div class="col-lg-2"></div>
+                    <div class="  col-lg-7">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">{{ 'header.form_header'|trans }}</h1>
+                        </div>
+                        <form class="user" enctype="multipart/form-data"  method="post" action="{{ path('app_generate_resume') }}">
+                            {% if not form.vars.valid %}
+                                <div class="alert alert-danger alert-dismissable">
+                                    <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                                    {{ form_errors(form) }}
+                                </div>
+                            {% endif %}
+                            {{ form_row(form._token) }}
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    {{ form_row(form.username) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    {{ form_row(form.repoType) }}
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="btn btn-primary btn-user btn-lg" type="submit" style="margin-top: 25px">
+                                        {{ 'form.label.generate_resume_button'|trans }}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /.container-fluid -->
+{% endblock body %}

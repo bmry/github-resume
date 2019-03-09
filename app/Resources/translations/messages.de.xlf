@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+         <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+             <file source-language="de" datatype="plaintext" original="file.ext">
+               <body>
+                <trans-unit id="1">
+                    <source>label.address.create</source>
+                    <target>Neue Adresse erstellen</target>
+                </trans-unit>
+                <trans-unit id="2">
+                    <source>label.address.list</source>
+                    <target>Adresse auflisten</target>
+                </trans-unit>
+                <trans-unit id="3">
+                    <source>header.adddress_form</source>
+                    <target>Adressbuch</target>
+                </trans-unit>
+                <trans-unit id="4">
+                    <source>form.label.first_name</source>
+                    <target>Vorname</target>
+                </trans-unit>
+                <trans-unit id="5">
+                    <source>form.label.last_name</source>
+                    <target>Nachname</target>
+                </trans-unit>
+                <trans-unit id="6">
+                    <source>form.label.email</source>
+                    <target>Email</target>
+                </trans-unit>
+                <trans-unit id="7">
+                    <source>form.label.zipcode</source>
+                    <target>Postleitzahl</target>
+                </trans-unit>
+                <trans-unit id="8">
+                    <source>form.label.phone</source>
+                    <target>Telefonnummer</target>
+                </trans-unit>
+                <trans-unit id="9">
+                    <source>form.label.birthday</source>
+                    <target>Geburtsdatum</target>
+                </trans-unit>
+                <trans-unit id="10">
+                    <source>form.label.city</source>
+                    <target>Stadt</target>
+                </trans-unit>
+                <trans-unit id="11">
+                    <source>form.label.country</source>
+                    <target>Land</target>
+                </trans-unit>
+                <trans-unit id="12">
+                    <source>form.label.profile_picture</source>
+                    <target>Profilbild (optional)</target>
+                </trans-unit>
+                <trans-unit id="13">
+                    <source>form.label.street_number</source>
+                    <target>Hausnummer</target>
+                </trans-unit>
+                <trans-unit id="14">
+                    <source>form.label.street_name</source>
+                    <target>Straßenname</target>
+                </trans-unit>
+                <trans-unit id="15">
+                    <source>form.label.btn_save</source>
+                    <target>Adresse speichern</target>
+                </trans-unit>
+                <trans-unit id="16">
+                    <source>form.label.action</source>
+                    <target>Aktion</target>
+                </trans-unit>
+                <trans-unit id="17">
+                    <source>label.address.view_details</source>
+                    <target>Im Detail sehen</target>
+                </trans-unit>
+                <trans-unit id="18">
+                    <source>label.address.delete</source>
+                    <target>Löschen</target>
+                </trans-unit>
+                <trans-unit id="19">
+                    <source>label.address.full_address</source>
+                    <target>Vollständige Adresse</target>
+                </trans-unit>
+                <trans-unit id="20">
+                    <source>address.delete.confirmation</source>
+                    <target>Möchten Sie diesen Datensatz wirklich löschen?</target>
+                </trans-unit>
+                <trans-unit id="21">
+                    <source>label.address.edit</source>
+                    <target>Bearbeiten</target>
+                </trans-unit>
+                <trans-unit id="22">
+                    <source>address.success.message</source>
+                    <target>Erfolg</target>
+                </trans-unit>
+                <trans-unit id="23">
+                    <source>address.error.message</source>
+                    <target>
+Fehler beim Erstellen des Datensatzes</target>
+                </trans-unit>
+                 <trans-unit id="24">
+                    <source>address.empty.record</source>
+                    <target>Sie haben noch keine Einträge in Ihrem Adressbuch. </target>
+                </trans-unit>
+                 <trans-unit id="25">
+                    <source>address.delete.success.message</source>
+                    <target>Datensatz gelöscht </target>
+                </trans-unit>
+                <trans-unit id="26">
+                        <source>address.error.record_not_found</source>
+                        <target>Aufnahme nicht gefunden</target>
+                </trans-unit>
+
+                </body>
+               </file>
+          </xliff>

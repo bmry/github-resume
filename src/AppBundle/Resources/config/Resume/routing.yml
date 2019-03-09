@@ -1,0 +1,4 @@
+app_generate_resume:
+  path:     /generate_resume
+  defaults: { _controller: AppBundle:Resume:generateResume }
+  methods: [POST]

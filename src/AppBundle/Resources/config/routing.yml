@@ -1,0 +1,7 @@
+app_index:
+  path: /
+  defaults: { _controller: AppBundle:Resume:generateResume}
+
+app_resume:
+  resource: "@AppBundle/Resources/config/Resume/routing.yml"
+  prefix:   /resume

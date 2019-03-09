@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+         <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+             <file source-language="en" datatype="plaintext" original="file.ext">
+               <body>
+                <trans-unit id="1">
+                    <source>label.address.create</source>
+                    <target>Create New Address</target>
+                </trans-unit>
+                <trans-unit id="2">
+                    <source>label.address.list</source>
+                    <target>List Address</target>
+                </trans-unit>
+                <trans-unit id="3">
+                    <source>header.form_header</source>
+                    <target>Generate Resume</target>
+                </trans-unit>
+                <trans-unit id="4">
+                    <source>form.label.first_name</source>
+                    <target>First Name</target>
+                </trans-unit>
+                <trans-unit id="5">
+                    <source>form.label.last_name</source>
+                    <target>Last Name</target>
+                </trans-unit>
+                <trans-unit id="6">
+                    <source>form.label.email</source>
+                    <target>Email</target>
+                </trans-unit>
+                <trans-unit id="7">
+                    <source>form.label.zipcode</source>
+                    <target>ZipCode</target>
+                </trans-unit>
+                <trans-unit id="8">
+                    <source>form.label.phone</source>
+                    <target>Phone Number</target>
+                </trans-unit>
+                <trans-unit id="9">
+                    <source>form.label.birthday</source>
+                    <target>Date of Birth</target>
+                </trans-unit>
+                <trans-unit id="10">
+                    <source>form.label.city</source>
+                    <target>City</target>
+                </trans-unit>
+                <trans-unit id="11">
+                    <source>form.label.country</source>
+                    <target>Country</target>
+                </trans-unit>
+                <trans-unit id="12">
+                    <source>form.label.profile_picture</source>
+                    <target>Profile Picture (Optional)</target>
+                </trans-unit>
+                <trans-unit id="13">
+                    <source>form.label.street_number</source>
+                    <target>Street Number</target>
+                </trans-unit>
+                <trans-unit id="14">
+                    <source>form.label.street_name</source>
+                    <target>Street Name</target>
+                </trans-unit>
+                <trans-unit id="15">
+                    <source>form.label.generate_resume_button</source>
+                    <target>Generate Resume</target>
+                </trans-unit>
+                <trans-unit id="16">
+                    <source>form.label.action</source>
+                    <target>Action</target>
+                </trans-unit>
+                <trans-unit id="17">
+                    <source>label.address.view_details</source>
+                    <target>View Detail</target>
+                </trans-unit>
+                <trans-unit id="18">
+                    <source>label.address.delete</source>
+                    <target>Delete</target>
+                </trans-unit>
+                <trans-unit id="19">
+                    <source>label.address.full_address</source>
+                    <target>Full Address</target>
+                </trans-unit>
+                <trans-unit id="20">
+                    <source>address.delete.confirmation</source>
+                    <target>Are you sure you want delete this record.</target>
+                </trans-unit>
+                <trans-unit id="21">
+                    <source>label.address.edit</source>
+                    <target>Edit</target>
+                </trans-unit>
+                <trans-unit id="22">
+                    <source>address.success.message</source>
+                    <target>Success</target>
+                </trans-unit>
+                <trans-unit id="23">
+                    <source>address.error.message</source>
+                    <target>Error creating record</target>
+                </trans-unit>
+                 <trans-unit id="24">
+                    <source>address.empty.record</source>
+                    <target>You have no record in your address book yet. </target>
+                </trans-unit>
+                 <trans-unit id="25">
+                    <source>address.delete.success.message</source>
+                    <target>Record deleted</target>
+                </trans-unit>
+                 <trans-unit id="26">
+                    <source>address.error.record_not_found</source>
+                    <target>Record not found</target>
+                </trans-unit>
+
+                </body>
+               </file>
+          </xliff>
