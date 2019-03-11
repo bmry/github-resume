@@ -4,10 +4,10 @@ How to Install
 
 -   composer install
            
-           This will install all dependencues and start the application.
+           This will install all dependencies and start the application.
            
-           URL: 127.0.0.1:8080
+           URL: http://127.0.0.1:8080
            
-           For German Translation run 127.0.0.1:8080/de
+           For German Translation run http://127.0.0.1:8080/de
            
 
