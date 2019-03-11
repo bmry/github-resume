@@ -2,3 +2,8 @@ app_resume_generate:
   path:     /generate_resume
   defaults: { _controller: AppBundle:Resume:generateResume }
   methods: [POST]
+
+app_resume_repo:
+  path:   /repo
+  defaults: { _controller: AppBundle:Resume:repository }
+  methods: [GET]

@@ -21,8 +21,9 @@ trait GitHubTraits
             $response = $client->request('GET', $api, [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
+                    'Accept' => 'application/json',
                 ],
+                'auth' => ['bmry', 'Sambam1955@@']
             ]);
         } catch (ClientException $e) {
             $response = $e->getResponse();
@@ -33,23 +34,5 @@ trait GitHubTraits
         return $response;
     }
 
-    function getRepositoryFromGitHubByUserName($username){
-        $api = 'https://api.github.com/users/'.$username.'/repos';
 
-        try {
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('GET', $api, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                ],
-            ]);
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-        } catch (\Exception $e) {
-            $response = null;
-        }
-
-        return $response;
-    }
 }

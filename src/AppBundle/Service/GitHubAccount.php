@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Morayo
@@ -8,6 +9,7 @@
 
 namespace AppBundle\Service;
 
+set_time_limit(0);
 
 use AppBundle\Traits\GitHubTraits;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,14 +20,24 @@ class GitHubAccount implements SourceRepoAccountInterface
     private $repositories;
     private $repositoryLink;
     private $avatarUrl;
+    private $website;
     private $numberOfPublicRepository;
     private $owner;
+    private $percentageOfLanguageUsed;
+    private $repoLanguageAPIs;
+    private $totalSumOfLanguageSize;
+    private $totalRepository;
+
 
     use GitHubTraits;
 
-    public function __construct()
+    public function __construct($accountUserName)
     {
         $this->repositories = new ArrayCollection();
+        $this->repoLanguageAPIs = array();
+        $this->totalSumOfLanguageSize = 0;
+        $this->setAccountProperties($accountUserName);
+        $this->createRepositoryList($accountUserName);
     }
 
 
@@ -38,14 +50,36 @@ class GitHubAccount implements SourceRepoAccountInterface
     {
         return $this->avatarUrl;
     }
+
+    public function getWebsite()
+    {
+        return $this->website;
+    }
     public function getRepositories()
     {
         return $this->repositories;
     }
 
-    public function getLanguageUsedPercentage()
+    public function getTotalRepo(){
+        return $this->totalRepository;
+    }
+
+    public function getPercentageOfLanguageUsed()
     {
-        // TODO: Implement getLanguageUsedPercentage() method.
+        return $this->calculatePercentageOfLanguageUsed();
+    }
+
+    public function setAccountProperties($accountUserName)
+    {
+        $accountOwnerDetails =  $this->getOwnerFromGitHubByUserName($accountUserName);
+        $accountOwnerDetails = json_decode($accountOwnerDetails->getBody()->getContents());
+        $this->repositoryLink = $accountOwnerDetails->repos_url;
+        $this->totalRepository = $accountOwnerDetails->public_repos;
+        $this->avatarUrl = $accountOwnerDetails->avatar_url;
+        $this->owner = $accountOwnerDetails->name == null ? $accountOwnerDetails->login : $accountOwnerDetails->name;
+        $this->website = $accountOwnerDetails->blog;
+
+        return $this;
     }
 
     private function createRepositoryList($accountUserName)
@@ -58,19 +92,75 @@ class GitHubAccount implements SourceRepoAccountInterface
             $repoObject->repoLink = $repo->html_url;
             $repoObject->repoName = $repo->name;
             $repoObject->repoDescription = $repo->description;
+            $this->repoLanguageAPIs[] = $repo->languages_url;
             $this->repositories->add($repoObject);
         }
     }
 
-    public function createUserRepoAccountObject($accountUserName)
-    {
-        $accountOwnerDetails =  $this->getOwnerFromGitHubByUserName($accountUserName);
-        $accountOwnerDetails = json_decode($accountOwnerDetails->getBody()->getContents());
-        $this->repositoryLink = $accountOwnerDetails->repos_url;
-        $this->numberOfPublicRepository = $accountOwnerDetails->public_repos;
-        $this->avatarUrl = $accountOwnerDetails->avatar_url;
-        $this->owner = $accountOwnerDetails->login;
-        $this->createRepositoryList($accountUserName);
-        return $this;
+    function getRepositoryFromGitHubByUserName($username){
+        $api = 'https://api.github.com/users/'.$username.'/repos';
+
+        try {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', $api, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json',
+                ],
+                'auth' => ['bmry', 'Sambam1955@@']
+            ]);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+        } catch (\Exception $e) {
+            $response = null;
+        }
+
+        return $response;
     }
+
+    function getRepositoryLanguageFromGitHub($languageAPI){
+
+        try {
+            $client = new \GuzzleHttp\Client();
+            $response = $client->request('GET', $languageAPI, [
+                'headers' => [
+                    'Content-Type' => 'application/json',
+                    'Accept' => 'application/json'
+                ],
+                'auth' => ['bmry', 'Sambam1955@@']
+            ]);
+        } catch (ClientException $e) {
+            $response = $e->getResponse();
+        } catch (\Exception $e) {
+            $response = null;
+        }
+
+        return $response;
+    }
+
+    private function calculatePercentageOfLanguageUsed(){
+
+        $languageAndTotalSizeInAccount = array();
+        foreach($this->repoLanguageAPIs as $api){
+            $response = $this->getRepositoryLanguageFromGitHub($api);
+            $responses = (array)json_decode($response->getBody()->getContents());
+            foreach($responses as $key=>$value){
+                if(array_key_exists($key, $languageAndTotalSizeInAccount)){
+                    $languageAndTotalSizeInAccount[$key] = $languageAndTotalSizeInAccount[$key] + $value;
+                }else{
+                    $languageAndTotalSizeInAccount[$key] = $value;
+                }
+            }
+        }
+
+        $this->totalSumOfLanguageSize = array_sum($languageAndTotalSizeInAccount);
+        $percentageOfLanguageUsed = array_map(function ($value){
+            return round(($value/($this->totalSumOfLanguageSize) * 100),3);
+
+        },$languageAndTotalSizeInAccount);
+
+        return $percentageOfLanguageUsed;
+    }
+
+
 }

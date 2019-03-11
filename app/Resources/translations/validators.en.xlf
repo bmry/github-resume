@@ -2,14 +2,14 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-             <trans-unit id="1">
-                                 <source>address.error.duplicate_phone_number</source>
-                                 <target>Duplicate Entry Alert: Phone number already exist.</target>
-                             </trans-unit>
-                             <trans-unit id="2">
-                                 <source>address.error.duplicate_email</source>
-                                 <target>Duplicate Entry Alert: Email address already exist.</target>
-                             </trans-unit>
+              <trans-unit id="1">
+                  <source>account.not_found</source>
+                  <target>"%username%" is not a valid %repoName% username</target>
+               </trans-unit>
+              <trans-unit id="2">
+                  <source>poor.internet_connection</source>
+                  <target> You are not connected to the internet to the internet or your internet is not good enough to perform this operation</target>
+               </trans-unit>
 
         </body>
     </file>

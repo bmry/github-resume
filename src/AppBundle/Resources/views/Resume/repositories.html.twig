@@ -1,0 +1,18 @@
+<div class="col mr-2">
+    {% for key, value in percentageOfLanguagesUsed %}
+        <div class="h5 mb-0 font-weight-light text-gray-800">{{ key }} : {{ value }}%</div>
+    {% endfor %}
+    <hr class="sidebar-divider">
+
+    <h3>{{ 'repositories.list_header'|trans }}</h3>
+    {% for repository in repositories %}
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_name'|trans }}</div>
+        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.repoName }}</div>
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_link'|trans }}</div>
+        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ repository.repoLink }}"> {{ repository.repoLink }} </a></div>
+        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_description'|trans }}</div>
+        <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.repoDescription }}</div>
+        <hr class="sidebar-divider">
+        <br/><br/>
+    {% endfor %}
+</div>

@@ -13,9 +13,11 @@ class AccountValidatorFactory
 {
     public static function buildAccountValidator($repositoryName){
 
-        $className = $repositoryName.'Validator()';
+        $className = 'AppBundle\Validation\\'.$repositoryName.'AccountValidator';
+
         if(class_exists($className)){
-            return new $repositoryName.'Validator()';
+            return new $className;
         }
+
     }
 }

@@ -8,7 +8,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Factory\SourceRepositoryFactory;
+use AppBundle\Factory\RepositoryAccountFactory;
 use AppBundle\Form\RequestFormType;
 use AppBundle\Traits\GitHubTraits;
 use AppBundle\Entity\RequestData;
@@ -25,21 +25,20 @@ class ResumeController extends Controller
 
         $form = $this->createForm(new RequestFormType(), $requestData);
         $form->handleRequest($request);
-        $resumeData = array();
         $accountUserName = $requestData->getUserName();
         $repositoryType = $requestData->getRepoType();
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $repositoryAccount = SourceRepositoryFactory::buildRepository($repositoryType);
-
-            $repositoryAccount = $repositoryAccount->createUserRepoAccountObject($accountUserName);
-
+            $repositoryAccount = RepositoryAccountFactory::buildRepository($repositoryType, $accountUserName);
             $resumeData = [
                 'owner' => $repositoryAccount->getOwner(),
-                'repositories' => $repositoryAccount->getRepositoryList(),
+                'website' => $repositoryAccount->getWebsite(),
                 'avatarUrl' => $repositoryAccount->getAvatarUrl(),
-                //'languagesAndPercentage' => $repositoryAccount->getUsedLanguagePercentage()
+                'repoType' => $repositoryType,
+                'totalRepo' => $repositoryAccount->getTotalRepo(),
+                'accountUsername' => $accountUserName
+
             ];
 
             return $this->render('AppBundle:Resume:resume.html.twig',array('resumeData' => $resumeData));
@@ -49,5 +48,15 @@ class ResumeController extends Controller
     }
 
 
+    public function repositoryAction(Request $request){
+        $repositoryType = $request->query->get('repo_type');
+        $accountUserName = $request->query->get('username');
+        $repositoryAccount = RepositoryAccountFactory::buildRepository($repositoryType, $accountUserName);
+        $repositories = $repositoryAccount->getRepositories();
+        $percentageOfLanguagesUsed = $repositoryAccount->getPercentageOfLanguageUsed();
+        return $this->render('AppBundle:Resume:repositories.html.twig',array('repositories' => $repositories, 'percentageOfLanguagesUsed'=> $percentageOfLanguagesUsed));
+
+
+    }
 
 }

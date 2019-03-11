@@ -15,10 +15,11 @@ interface SourceRepoAccountInterface
 
     public function getRepositories();
 
-    public function getLanguageUsedPercentage();
+    public function getPercentageOfLanguageUsed();
 
     public function getAvatarUrl();
 
-    public function createUserRepoAccountObject($username);
+    public function getTotalRepo();
 
+    public function getWebsite();
 }

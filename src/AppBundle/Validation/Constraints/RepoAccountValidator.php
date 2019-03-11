@@ -6,24 +6,16 @@
  * Time: 13:52.
  */
 
-namespace AppBundle\Validaton\Constraints;
+namespace AppBundle\Validation\Constraints;
 
 use AppBundle\Factory\AccountValidatorFactory;
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityManagerInterface;
-use Rombit\LeanX\AppBundle\Entity\RequestData;
+use AppBundle\Entity\RequestData;
 use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 
 class RepoAccountValidator extends ConstraintValidator
 {
-    protected $em;
-
-    public function __construct(EntityManagerInterface $em)
-    {
-        $this->em = $em;
-    }
 
     public function validate($object, Constraint $constraint)
     {
@@ -31,16 +23,34 @@ class RepoAccountValidator extends ConstraintValidator
             return;
         }
 
-        $repositoryType = $object->getRepoType();
-        $accountUserName = $object->getUsername();
-        $accountValidator = AccountValidatorFactory::buildAccountValidator($repositoryType);
 
-        if (!$accountValidator->accountExist($accountUserName)) {
+        if($this->internetConnectionIsGood()){
+            $repositoryType = $object->getRepoType();
+            $accountUserName = $object->getUsername();
+            $accountValidator = AccountValidatorFactory::buildAccountValidator($repositoryType);
+            if (!$accountValidator->accountExist($accountUserName)) {
+                $this->context->buildViolation(
+                    'account.not_found',
+                    ['%repoName%' => $repositoryType, '%username%' => $accountUserName]
+                )->addViolation();
+            }
+        }else{
             $this->context->buildViolation(
-                'account.not_found',
+                'poor.internet_connection',
                 []
             )->addViolation();
         }
+    }
+
+    private function internetConnectionIsGood(){
+        $goodInternet = false;
+        $connected = @fsockopen("www.google.com", 80,$errorno,$errorstr, 45);
+
+        if ($connected){
+            $goodInternet = true; //action when connected
+            fclose($connected);
+        }
+        return $goodInternet;
     }
 
 }

@@ -31,7 +31,7 @@ class BitBucketAccount implements SourceRepoAccountInterface
         // TODO: Implement getAvatarUrl() method.
     }
 
-    public function createUserRepoAccountObject($username)
+    public function initialise($username)
     {
         // TODO: Implement createUserRepoAccountObject() method.
     }

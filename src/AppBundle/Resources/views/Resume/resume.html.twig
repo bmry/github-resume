@@ -3,7 +3,10 @@
 {% block body %}
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-3 col-md-6 mb-4">
+            <div class="col-xl-3">
+
+            </div>
+            <div class="col-xl-6 col-md-6 mb-4">
                 <div class="card border-left-primary shadow h-100 py-2">
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
@@ -11,46 +14,50 @@
                                 <img  src="{{ resumeData['avatarUrl'] }}" width="280" />
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
+                        <br/>
                         <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.owner'|trans }}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ resumData['owner'] }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ resumeData['owner'] }}</div>
                                 <hr class="sidebar-divider">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.total_repo'|trans }}</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ resumData['repositories']|length }}</div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.website'|trans }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ resumeData['website'] }}">{{ resumeData['website'] }}</a></div>
                                 <hr class="sidebar-divider">
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> {{ 'form.label.total_repo'|trans }}</div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{ resumeData['totalRepo'] }}</div>
+                                <hr class="sidebar-divider">
+
                             </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-md-6 mb-4">
-                <div class="card border-left-primary shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                {% for respository in resumeData['repositories'] %}
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_name'|trans }}</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.name }}</div>
-                                 <hr class="sidebar-divider">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_link'|trans }}</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.link }}</div>
-                                 <hr class="sidebar-divider">
-                                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_description'|trans }}</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.description }}</div>
-                                 <hr class="sidebar-divider">
-                            {% endfor %}
-                            </div>
+                        <div class="row no-gutters align-items-center" id="repo">
+                            <img src="{{ app.request.schemeAndHttpHost() }}/img/ajax-loader.gif" /><br/>
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> {{ 'getting.repo_message'|trans }}</div>
+
                         </div>
                     </div>
+
                 </div>
             </div>
+
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+
+            //var url = '/resume/repo?repo_type='+'{{ resumeData['repoType'] }}'+'&username='+'{{ resumeData['accountUsername'] }}'
+            var url = "{{ path('app_resume_repo',{'repo_type':resumeData['repoType'],'username': resumeData['accountUsername'] }) }}";
+            $.ajax
+            (
+                {
+                    type: "GET",
+                    url: url.replace(/&amp;/g, '&'),
+                    success: function(html)
+                    {
+                        $("#repo").html(html);
+                    }
+                });
+        });
+
+    </script>
 {% endblock body %}

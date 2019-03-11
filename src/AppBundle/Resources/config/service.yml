@@ -1,0 +1,5 @@
+services:
+  app.repo_account_validator:
+    class: AppBundle\Validation\Constraints\RepoAccountValidator
+    tags:
+    - { name: validator.constraint_validator, alias: address_book_validator }
