@@ -2,28 +2,24 @@
 /**
  * Created by PhpStorm.
  * User: Morayo
- * Date: 3/9/2019
- * Time: 12:03 PM
+ * Date: 3/11/2019
+ * Time: 12:02 PM
  */
 
 namespace AppBundle\Traits;
 
 
-use GuzzleHttp\Exception\ClientException;
-
-trait GitHubTraits
+trait GitHubTrait
 {
-      function getOwnerFromGitHubByUserName($username){
-        $api = 'https://api.github.com/users/'.$username;
-
+    private function makeRequest($api){
         try {
             $client = new \GuzzleHttp\Client();
             $response = $client->request('GET', $api, [
                 'headers' => [
                     'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
+                    'Accept' => 'application/json'
                 ],
-                'auth' => ['bmry', 'bb2328864465baeb658411e7c096114f8270a685']
+                'auth' => ['bmry','bb2328864465baeb658411e7c096114f8270a685']
             ]);
         } catch (ClientException $e) {
             $response = $e->getResponse();
@@ -33,6 +29,4 @@ trait GitHubTraits
 
         return $response;
     }
-
-
 }

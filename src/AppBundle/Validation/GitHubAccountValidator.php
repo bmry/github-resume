@@ -9,16 +9,19 @@
 namespace AppBundle\Validation;
 
 
-use AppBundle\Traits\GitHubTraits;
+use AppBundle\Traits\GitHubTrait;
+use GuzzleHttp\Exception\ClientException;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class GitHubAccountValidator implements AccountValidatorInterface
 {
-    use GitHubTraits;
+    use GitHubTrait;
 
     public function accountExist($accountUsername)
     {
         $accountExist = true;
-        $apiResponse = $this->getOwnerFromGitHubByUserName($accountUsername);
+        $userApi = 'https://api.github.com/users/'.$accountUsername;
+        $apiResponse = $this->makeRequest($userApi);
         if($apiResponse->getStatusCode() != 200) {
             $accountExist = false;
         }

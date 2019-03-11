@@ -1,5 +1,6 @@
 services:
   app.repo_account_validator:
-    class: AppBundle\Validation\Constraints\RepoAccountValidator
+    class: AppBundle\Validation\AccountValidatorInterface
+    arguments: ["@service_container" ]
     tags:
     - { name: validator.constraint_validator, alias: address_book_validator }

@@ -11,7 +11,7 @@ namespace AppBundle\Service;
 
 set_time_limit(0);
 
-use AppBundle\Traits\GitHubTraits;
+use AppBundle\Traits\GitHubTrait;
 use Doctrine\Common\Collections\ArrayCollection;
 use GuzzleHttp\Exception\ClientException;
 
@@ -21,16 +21,12 @@ class GitHubAccount implements SourceRepoAccountInterface
     private $repositoryLink;
     private $avatarUrl;
     private $website;
-    private $numberOfPublicRepository;
     private $owner;
-    private $percentageOfLanguageUsed;
     private $repoLanguageAPIs;
     private $totalSumOfLanguageSize;
     private $totalRepository;
 
-
-    use GitHubTraits;
-
+    use GitHubTrait;
     public function __construct($accountUserName)
     {
         $this->repositories = new ArrayCollection();
@@ -100,43 +96,19 @@ class GitHubAccount implements SourceRepoAccountInterface
     function getRepositoryFromGitHubByUserName($username){
         $api = 'https://api.github.com/users/'.$username.'/repos';
 
-        try {
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('GET', $api, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json',
-                ],
-                'auth' => ['bmry', 'bb2328864465baeb658411e7c096114f8270a685']
-            ]);
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-        } catch (\Exception $e) {
-            $response = null;
-        }
-
-        return $response;
+        return $this->makeRequest($api);
     }
 
     function getRepositoryLanguageFromGitHub($languageAPI){
 
-        try {
-            $client = new \GuzzleHttp\Client();
-            $response = $client->request('GET', $languageAPI, [
-                'headers' => [
-                    'Content-Type' => 'application/json',
-                    'Accept' => 'application/json'
-                ],
-                'auth' => ['bmry', 'bb2328864465baeb658411e7c096114f8270a685']
-            ]);
-        } catch (ClientException $e) {
-            $response = $e->getResponse();
-        } catch (\Exception $e) {
-            $response = null;
-        }
-
-        return $response;
+        return $this->makeRequest($languageAPI);
     }
+
+    function getOwnerFromGitHubByUserName($username){
+        $api = 'https://api.github.com/users/'.$username;
+        return $this->makeRequest($api);
+    }
+
 
     private function calculatePercentageOfLanguageUsed(){
 
@@ -161,6 +133,8 @@ class GitHubAccount implements SourceRepoAccountInterface
 
         return $percentageOfLanguageUsed;
     }
+
+
 
 
 }

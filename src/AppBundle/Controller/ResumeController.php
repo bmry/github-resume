@@ -10,14 +10,12 @@ namespace AppBundle\Controller;
 
 use AppBundle\Factory\RepositoryAccountFactory;
 use AppBundle\Form\RequestFormType;
-use AppBundle\Traits\GitHubTraits;
 use AppBundle\Entity\RequestData;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 class ResumeController extends Controller
 {
-    use GitHubTraits;
 
     public function generateResumeAction(Request $request)
     {

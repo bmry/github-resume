@@ -11,9 +11,9 @@ namespace AppBundle\Factory;
 
 class AccountValidatorFactory
 {
-    public static function buildAccountValidator($repositoryName){
+    public static function buildAccountValidator($repositoryType){
 
-        $className = 'AppBundle\Validation\\'.$repositoryName.'AccountValidator';
+        $className = 'AppBundle\Validation\\'.$repositoryType.'AccountValidator';
 
         if(class_exists($className)){
             return new $className;

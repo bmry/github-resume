@@ -9,7 +9,7 @@
 namespace AppBundle\Validation;
 
 
-use AppBundle\Service\SourceRepoAccountInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
 interface AccountValidatorInterface
 {
