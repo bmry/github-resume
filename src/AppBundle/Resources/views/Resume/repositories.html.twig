@@ -8,8 +8,10 @@
     {% for repository in repositories %}
         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_name'|trans }}</div>
         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.repoName }}</div>
+        <br/>
         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_link'|trans }}</div>
         <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="{{ repository.repoLink }}"> {{ repository.repoLink }} </a></div>
+        <br/>
         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">{{ 'form.label.repo_description'|trans }}</div>
         <div class="h5 mb-0 font-weight-bold text-gray-800">{{ repository.repoDescription }}</div>
         <hr class="sidebar-divider">

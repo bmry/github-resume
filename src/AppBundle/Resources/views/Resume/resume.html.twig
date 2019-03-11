@@ -30,8 +30,9 @@
                             </div>
                         </div>
                         <div class="row no-gutters align-items-center" id="repo">
-                            <img src="{{ app.request.schemeAndHttpHost() }}/img/ajax-loader.gif" /><br/>
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> {{ 'getting.repo_message'|trans }}</div>
+
+                            <img src="{{ app.request.schemeAndHttpHost() }}/img/ajax-loader.gif" /><br/>
 
                         </div>
                     </div>
@@ -55,6 +56,9 @@
                     success: function(html)
                     {
                         $("#repo").html(html);
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        $("#repo").html("Sorry, error encountered getting repositories");
                     }
                 });
         });

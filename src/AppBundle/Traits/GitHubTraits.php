@@ -23,7 +23,7 @@ trait GitHubTraits
                     'Content-Type' => 'application/json',
                     'Accept' => 'application/json',
                 ],
-                'auth' => ['bmry', 'Sambam1955@@']
+                'auth' => ['bmry', 'bb2328864465baeb658411e7c096114f8270a685']
             ]);
         } catch (ClientException $e) {
             $response = $e->getResponse();
