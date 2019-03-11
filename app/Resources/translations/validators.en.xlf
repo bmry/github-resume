@@ -10,6 +10,10 @@
                   <source>poor.internet_connection</source>
                   <target> You are not connected to the internet to the internet or your internet is not good enough to perform this operation</target>
                </trans-unit>
+              <trans-unit id="3">
+                  <source>account.only_github</source>
+                  <target>Sorry. Only GitHub Resume can be generated for now. BitBucket option is included to show that this application is extensible.</target>
+               </trans-unit>
 
         </body>
     </file>

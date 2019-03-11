@@ -28,6 +28,13 @@ class RepoAccountValidator extends ConstraintValidator
             $repositoryType = $object->getRepoType();
             $accountUserName = $object->getUsername();
             $accountValidator = AccountValidatorFactory::buildAccountValidator($repositoryType);
+            if($repositoryType != 'GitHub'){
+                $this->context->buildViolation(
+                    'account.only_github',
+                    []
+                )->addViolation();
+            }
+
             if (!$accountValidator->accountExist($accountUserName)) {
                 $this->context->buildViolation(
                     'account.not_found',

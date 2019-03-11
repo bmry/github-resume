@@ -4,11 +4,11 @@
                <body>
                 <trans-unit id="1">
                     <source>form.label.owner</source>
-                    <target>Account Owner</target>
+                    <target>Kontoinhaber</target>
                 </trans-unit>
                 <trans-unit id="2">
                     <source>form.label.total_repo</source>
-                    <target>Number Of Repositories</target>
+                    <target>Anzahl der Repositories</target>
                 </trans-unit>
                 <trans-unit id="3">
                     <source>form.label.repo_name</source>
@@ -16,15 +16,15 @@
                 </trans-unit>
                 <trans-unit id="4">
                     <source>form.label.repo_link</source>
-                    <target>Repository Link</target>
+                    <target>Repository Verknüpfung</target>
                 </trans-unit>
                 <trans-unit id="5">
                     <source>form.label.repo_description</source>
-                    <target>Repository Description</target>
+                    <target>Repository Beschreibung</target>
                 </trans-unit>
                 <trans-unit id="6">
                     <source>header.form_header</source>
-                    <target>Generate Resume</target>
+                    <target>Lebenslauf erstellen</target>
                 </trans-unit>
                 <trans-unit id="7">
                     <source>repositories.list_header</source>
@@ -32,7 +32,7 @@
                 </trans-unit>
                 <trans-unit id="8">
                     <source>form.label.username</source>
-                    <target>Username</target>
+                    <target>Nutzername</target>
                 </trans-unit>
                 <trans-unit id="9">
                     <source>form.label.repository_type</source>
@@ -40,19 +40,19 @@
                 </trans-unit>
                 <trans-unit id="10">
                     <source>percentage_of_language_used</source>
-                    <target>Percentage Of Language Used</target>
+                    <target>Prozentsatz der verwendeten Sprache</target>
                 </trans-unit>
                 <trans-unit id="11">
                     <source>form.label.website</source>
-                    <target>Website</target>
+                    <target>Webseite</target>
                 </trans-unit>
                 <trans-unit id="12">
                     <source>getting.repo_message</source>
-                    <target>Please wait while we get account repositories ...</target>
+                    <target>Bitte warten Sie, bis wir Account-Repositories erhalten ...</target>
                 </trans-unit>
                 <trans-unit id="13">
                     <source>form.label.generate_resume_button</source>
-                    <target>Generate Resume</target>
+                    <target>Lebenslauf generieren</target>
                 </trans-unit>
 
                 </body>

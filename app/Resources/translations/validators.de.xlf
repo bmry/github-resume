@@ -2,14 +2,18 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="de" datatype="plaintext" original="file.ext">
         <body>
-             <trans-unit id="1">
-               <source>address.error.duplicate_phone_number</source>
-               <target>Warnung bei doppelter Eingabe: Telefonnummer ist bereits vorhanden</target>
-              </trans-unit>
+              <trans-unit id="1">
+                  <source>account.not_found</source>
+                  <target>"%username%" ist kein gültiger %repoName% Benutzername</target>
+               </trans-unit>
               <trans-unit id="2">
-                <source>address.error.duplicate_email</source>
-                <target>Warnung bei doppelter Eingabe: E-Mail-Adresse ist bereits vorhanden.</target>
-              </trans-unit>
+                  <source>poor.internet_connection</source>
+                  <target> Sie sind nicht mit dem Internet verbunden oder das Internet ist nicht gut genug, um diesen Vorgang auszuführen</target>
+               </trans-unit>
+              <trans-unit id="3">
+                  <source>account.only_github</source>
+                  <target>Es tut uns leid. Momentan kann nur GitHub Resume generiert werden. Die BitBucket-Option ist nur enthalten, um anzuzeigen, dass diese Anwendung erweiterbar ist.</target>
+               </trans-unit>
 
         </body>
     </file>
