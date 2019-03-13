@@ -19,3 +19,4 @@ SAMPLE:
 ![Sample Resume](https://docs.google.com/uc?id=1HjqQZJUqMyitA7VaNd7ZmdgnFjWjZdPs)   
 
 ![Sample Resume](https://docs.google.com/uc?id=1_D-3_Ne626HrASHZdunaNSK1E_-mmGAi)   
+![Sample Resume](https://docs.google.com/uc?id=1-KTtsscz7d6lqcvDPfdg7tooYKSOlVlC)   
